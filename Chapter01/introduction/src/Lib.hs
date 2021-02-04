@@ -1,5 +1,5 @@
 module Lib
-    ( someFunc, double, qsort, seqn, my_product, qsort2
+    ( someFunc, double, qsort, seqn, my_product, qsort2, my_sum
     ) where
 
 someFunc :: IO ()
@@ -7,8 +7,8 @@ someFunc = putStrLn "someFunc"
 
 double x = x + x
 
--- sum []     = 0
--- sum (n:ns) = n + sum ns
+my_sum []     = 0
+my_sum (n:ns) = n + my_sum ns
 
 qsort []     = []
 qsort (x:xs) = qsort smaller ++ [x] ++ qsort larger
