@@ -3,4 +3,7 @@ module Main where
 import Lib
 
 main :: IO ()
-main = someFunc
+main = do
+    -- print $ False :: Bool
+    -- print $ not False :: Bool
+    -- print $ not (not False) :: Bool
