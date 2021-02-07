@@ -1,5 +1,5 @@
 module Lib
-    ( add, zeroto, mult
+    ( add, zeroto, mult, copy, palindrome
     ) where
 
 someFunc :: IO ()
@@ -22,3 +22,9 @@ zeroto n = [0..n]
 
 mult :: Int -> (Int -> (Int -> Int))
 mult x y z = x * y * z
+
+copy :: a -> (a, a)
+copy a = (a, a)
+
+palindrome :: Eq a => [a] -> Bool
+palindrome xs = reverse xs == xs

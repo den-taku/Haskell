@@ -23,4 +23,8 @@ main = do
     print $ "signum (-3) : " ++ (show $ signum (-3))
     print $ 7.0 / 2.0
     print $ recip 2.0
+    print $ copy "HOGEHOGE"
+    print $ palindrome [1, 2, 3, 4, 5, 4, 3, 2, 1]
+    -- print $ palindrome [(\x -> x * x)]
+
     
