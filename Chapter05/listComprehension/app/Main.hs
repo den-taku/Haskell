@@ -2,6 +2,15 @@ module Main where
 
 import Lib
 
+grid :: Int -> Int -> [(Int, Int)]
+grid x y = [(a, b) | a <- [0..x], b <- [0..y]]
+
+square :: Int -> [(Int, Int)]
+square n = [(x, y) | (x, y) <- grid n n, x /= y]
+
+scalarproduct :: [Int] -> [Int] -> Int
+scalarproduct xs ys = sum [x * y | (x, y) <- zip xs ys]
+
 main :: IO ()
 main = do
     someFunc
@@ -24,3 +33,7 @@ main = do
     print $ crack "vscd mywzboroxcsyxc kbo ecopev"
     print $ crack $ encode 3 "boxing wizards jump quickly"
     print $ crack $ encode 7 "my name is dentaku. nice to meet you!"
+    print $ sum [x^2 | x <- [1..100]]
+    print $ grid 1 2
+    print $ square 2
+    print $ scalarproduct [1, 2, 3] [4, 5, 6]
