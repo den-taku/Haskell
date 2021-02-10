@@ -32,7 +32,7 @@ sorted :: Ord a => [a] -> Bool
 sorted xs = and [x <= y | (x, y) <- pairs xs]
 
 positions :: Eq a => a -> [a] -> [Int]
-positions x xs = [i| (x', i) <- zip xs [0..], x == x']
+positions x xs = [i | (x', i) <- zip xs [0..], x == x']
 
 lowers :: String -> Int
 lowers xs = Prelude.length [x | x <- xs, isAsciiLower x]
