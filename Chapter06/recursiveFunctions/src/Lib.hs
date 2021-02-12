@@ -11,6 +11,8 @@ someFunc = do
     print $ insert 3 [1, 2, 3, 4, 5]
     print $ isort [3,2,5,3,5,6,34,6,3,2,42,5,64,2,1,23,4,6,45,32]
     print $ Lib.zip ['a', 'b', 'c'] [1, 2, 3, 4]
+    print $ fib 8
+    print $ qsort [3,2,5,3,5,6,34,6,3,2,42,5,64,2,1,23,4,6,45,32]
 
 fac :: Int -> Int
 fac 0 = 1
@@ -41,3 +43,15 @@ zip :: [a] -> [b] -> [(a, b)]
 zip []     _      = []
 zip _      []     = []
 zip (x:xs) (y:ys) = (x,y) : Lib.zip xs ys
+
+fib :: Int -> Int
+fib 0 = 0
+fib 1 = 1
+fib n = fib (n-2) + fib (n-1)
+
+qsort :: Ord a => [a] -> [a]
+qsort []     = []
+qsort (x:xs) = qsort smaller ++ [x] ++ qsort larger 
+               where
+                   smaller = [a | a <- xs, a <= x]
+                   larger = [b | b <- xs, b > x] 
