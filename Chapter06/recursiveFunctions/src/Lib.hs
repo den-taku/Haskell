@@ -16,6 +16,10 @@ someFunc = do
     print $ Lib.even 89
     print $ evens "Hello, my name is DenTaku!"
     print $ Lib.init [1, 2, 3, 4, 5, 6]
+    print $ euclid 6 27
+    print $ halve [1, 2, 3, 4, 5, 6, 7]
+    print $ merge [2, 5, 6] [1, 3, 4]
+    print $ msort [3,2,5,3,5,6,34,6,3,2,42,5,64,2,1,23,4,6,45,32]
 
 fac :: Int -> Int
 fac 0 = 1
@@ -78,3 +82,26 @@ odds (_:xs) = evens xs
 init :: [a] -> [a]
 init [_]    = []
 init (x:xs) = x : Lib.init xs
+
+euclid :: Int -> Int -> Int
+euclid x y | x == y    = x
+           | x > y     = euclid y (x-y)
+           | otherwise = euclid x (y-x) 
+
+merge :: Ord a => [a] -> [a] -> [a]
+merge []     ys     = ys
+merge xs     []     = xs 
+merge (x:xs) (y:ys) | x >= y    = y : x : merge xs ys
+                    | otherwise = x : y : merge xs ys 
+
+halve :: [a] -> ([a], [a])
+halve xs = (take n xs, drop n xs)
+           where
+               n = (length xs) `div` 2 
+
+msort :: Ord a => [a] -> [a]
+msort []  = []
+msort [x] = [x]  
+msort xs  = merge (msort as) (msort bs)
+            where
+                (as, bs) = halve xs
