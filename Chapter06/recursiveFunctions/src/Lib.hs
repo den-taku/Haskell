@@ -15,6 +15,7 @@ someFunc = do
     print $ qsort [3,2,5,3,5,6,34,6,3,2,42,5,64,2,1,23,4,6,45,32]
     print $ Lib.even 89
     print $ evens "Hello, my name is DenTaku!"
+    print $ Lib.init [1, 2, 3, 4, 5, 6]
 
 fac :: Int -> Int
 fac 0 = 1
@@ -73,3 +74,7 @@ evens  (x:xs) = x : odds xs
 odds :: [a] -> [a]
 odds [] = []
 odds (_:xs) = evens xs
+
+init :: [a] -> [a]
+init [_]    = []
+init (x:xs) = x : Lib.init xs
