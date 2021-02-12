@@ -10,6 +10,7 @@ someFunc = do
     print $ Lib.reverse [1, 2, 3]
     print $ insert 3 [1, 2, 3, 4, 5]
     print $ isort [3,2,5,3,5,6,34,6,3,2,42,5,64,2,1,23,4,6,45,32]
+    print $ Lib.zip ['a', 'b', 'c'] [1, 2, 3, 4]
 
 fac :: Int -> Int
 fac 0 = 1
@@ -35,3 +36,8 @@ insert x (y:ys) | x <= y    = x : y : ys
 isort :: Ord a => [a] -> [a]
 isort []     = []
 isort (x:xs) = insert x (isort xs)
+
+zip :: [a] -> [b] -> [(a, b)]
+zip []     _      = []
+zip _      []     = []
+zip (x:xs) (y:ys) = (x,y) : Lib.zip xs ys
