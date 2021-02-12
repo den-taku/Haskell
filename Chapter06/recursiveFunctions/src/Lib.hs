@@ -91,8 +91,8 @@ euclid x y | x == y    = x
 merge :: Ord a => [a] -> [a] -> [a]
 merge []     ys     = ys
 merge xs     []     = xs 
-merge (x:xs) (y:ys) | x >= y    = y : x : merge xs ys
-                    | otherwise = x : y : merge xs ys 
+merge (x:xs) (y:ys) | x >= y    = y : merge (x:xs) ys
+                    | otherwise = x : merge xs (y:ys) 
 
 halve :: [a] -> ([a], [a])
 halve xs = (take n xs, drop n xs)
