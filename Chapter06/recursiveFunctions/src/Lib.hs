@@ -13,6 +13,8 @@ someFunc = do
     print $ Lib.zip ['a', 'b', 'c'] [1, 2, 3, 4]
     print $ fib 8
     print $ qsort [3,2,5,3,5,6,34,6,3,2,42,5,64,2,1,23,4,6,45,32]
+    print $ Lib.even 89
+    print $ evens "Hello, my name is DenTaku!"
 
 fac :: Int -> Int
 fac 0 = 1
@@ -55,3 +57,19 @@ qsort (x:xs) = qsort smaller ++ [x] ++ qsort larger
                where
                    smaller = [a | a <- xs, a <= x]
                    larger = [b | b <- xs, b > x] 
+
+even :: Int -> Bool
+even 0 = True
+even n = Lib.odd (n-1)
+
+odd :: Int -> Bool
+odd 0 = False
+odd n = Lib.even (n-1)
+
+evens :: [a] -> [a]
+evens [] = []
+evens  (x:xs) = x : odds xs
+
+odds :: [a] -> [a]
+odds [] = []
+odds (_:xs) = evens xs
