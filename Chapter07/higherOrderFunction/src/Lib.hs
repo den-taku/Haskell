@@ -5,6 +5,7 @@ module Lib
 someFunc :: IO ()
 someFunc = do
     print $ msort [3, 3, 532, 3, 32, 3, 63, 7, 312, 4, 7, 1, 32, 4]
+    -- print $ msort $ reverse [1..]
 
 msort :: Ord a => [a] -> [a]
 msort []  = []
