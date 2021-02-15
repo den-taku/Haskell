@@ -21,6 +21,13 @@ someFunc = do
     print $ any odd [2, 4, 6, 8]
     print $ takeWhile even [2, 4, 6, 7, 8]
     print $ dropWhile odd [1, 3, 5, 6, 7]
+    print $ Lib.foldr1 (+) 0 [1..10]
+    print $ foldr (\_ n -> 1+n) 0 [1..1000]
+    print $ reverse1 [1..10]
+    print $ sum2 [1..10]
+    print $ foldl (*) 1 [1..10]
+    print $ foldl (&&) True [True, True, True, True]
+    print $ Lib.foldl1 (\n _ -> n+1) 0 [1..9000]
 
 msort :: Ord a => [a] -> [a]
 msort []  = []
@@ -62,3 +69,37 @@ filter2 p (x:xs) | p x       = x : filter2 p xs
 
 sumsqreven :: [Int] -> Int
 sumsqreven ns = sum $ Lib.map (^2) $ Lib.filter even ns
+
+sum1 :: Num a => [a] -> a
+sum1 = foldr (+) 0
+
+product1 :: Num a => [a] -> a
+product1 = foldr (*) 1
+
+or1 :: [Bool] -> Bool
+or1 = foldr (||) False
+
+and1 :: [Bool] -> Bool
+and1 = foldr (&&) True
+
+foldr1 :: (a -> b -> b) -> b -> [a] -> b
+foldr1 f v []     = v
+foldr1 f v (x:xs) = f x (Lib.foldr1 f v xs)
+
+reverse1 :: [a] -> [a]
+reverse1 = foldr snoc []
+            where
+                snoc x xs = xs ++ [x]
+
+sum2 :: Num a => [a] -> a
+sum2 = sum' 0
+       where
+           sum' v []     = v
+           sum' v (x:xs) = sum' (v+x) xs
+
+foldl1 :: (a -> b -> a) -> a -> [b] -> a
+foldl1 f v []     = v 
+foldl1 f v (x:xs) = Lib.foldl1 f (f v x) xs
+
+(.) :: (b -> c) -> (a -> b) -> (a -> c)
+f . g = \x -> f (g x)
