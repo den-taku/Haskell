@@ -4,4 +4,4 @@ import Lib
 import StBi
 
 main :: IO ()
-main = someFunc
+main = printTest
