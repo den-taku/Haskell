@@ -10,3 +10,11 @@
 `any` : どれかが述語を満たすか
 `takeWhile` : 先頭から述語を満たすものまで取り出す
 `dropWhile` : 先頭から述語を満たすものまで取り除く
+
+`foldr`: cons演算子をfに，空リストをvに置き換える
+
+```haskell
+foldr :: (a -> b -> b) -> b -> [a] -> b
+foldr f v []     = v   
+foldr f v (x:xs) = f x (foldr f v xs)
+```
