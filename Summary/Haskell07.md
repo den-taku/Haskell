@@ -23,3 +23,25 @@ foldr :: (a -> b -> b) -> b -> [a] -> b
 foldr f v []     = v   
 foldr f v (x:xs) = f x (foldr f v xs)
 ```
+
+`foldl` : **備蓄変数**現在の先頭に演算子を適用して備蓄変数を更新
+
+```haskell
+foldl :: (a -> b -> a) -> a -> [b] -> a
+foldl f v []     = v 
+foldl f v (x:xs) = foldl f (f v x) xs
+```
+
+`.` : 関数合成演算子
+
+`iterate` : 引数の関数を引数の値に繰り返し適用
+ - `iterate f x = [x, f x, f ( f x), f (f (f x)), ...]`
+
+`case of`
+
+```haskell
+case (マッチさせるもの) of
+    (ケース1) -> (処理1)
+    (ケース2) -> (処理2)
+    (ケース3) -> (処理3)
+```
