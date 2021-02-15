@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 15451ebe74dcfd56756e2f7152863f3538335927b522ee05ae72ef2971cd6eea
+-- hash: 1cfde2472dbe0d09bc39eb3fdc4820529e868c57c3004b47fdcd9f3bae0b39b6
 
 name:           higherOrderFunction
 version:        0.1.0.0
@@ -29,6 +29,7 @@ library
   exposed-modules:
       Lib
       StBi
+      Vote
   other-modules:
       Paths_higherOrderFunction
   hs-source-dirs:

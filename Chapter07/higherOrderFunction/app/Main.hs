@@ -2,6 +2,7 @@ module Main where
 
 import Lib
 import StBi
+import Vote
 
 main :: IO ()
-main = printTest
+main = Vote.printTest

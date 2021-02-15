@@ -1,12 +1,12 @@
 module StBi
-    (
-        printTest 
+    ( printTest 
     ) where
 
 import Data.Char
 
 type Bit = Int
 
+printTest :: IO ()
 printTest = do 
     print "Hello, world!"
     print $ bin2int [1, 0, 1, 1]
