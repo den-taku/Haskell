@@ -28,6 +28,10 @@ someFunc = do
     print $ foldl (*) 1 [1..10]
     print $ foldl (&&) True [True, True, True, True]
     print $ Lib.foldl1 (\n _ -> n+1) 0 [1..9000]
+    print $ (not . even) 5
+    print $ ((+1) . (+1)) 7
+    print $ (sum . Lib.map (^2) . Lib.filter even) [1..20]
+    print $ compose [(+1), (+2), (+3)] 7
 
 msort :: Ord a => [a] -> [a]
 msort []  = []
@@ -101,5 +105,8 @@ foldl1 :: (a -> b -> a) -> a -> [b] -> a
 foldl1 f v []     = v 
 foldl1 f v (x:xs) = Lib.foldl1 f (f v x) xs
 
-(.) :: (b -> c) -> (a -> b) -> (a -> c)
-f . g = \x -> f (g x)
+-- (.) :: (b -> c) -> (a -> b) -> (a -> c)
+-- f . g = \x -> f (g x)
+
+compose :: [a -> a] -> (a -> a)
+compose = foldr (.) id
