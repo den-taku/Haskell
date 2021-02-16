@@ -12,6 +12,12 @@ someFunc = do
     print $ area $ Circle 9.0
     print $ safediv 8 0
     print $ safehead [1..10]
+    print $ int2nat 8
+    print $ add (Succ (Succ Zero)) (Succ (Succ (Succ Zero)))
+    print $ t
+    print $ occers 3 t
+    print $ occers 4567 t
+    print $ flattern t
 
 -- type String = [Char]
 
@@ -61,4 +67,47 @@ safehead :: [a] -> Maybe a
 safehead [] = Nothing
 safehead xs = Just $ head xs
 
-newtype Nat = N Int deriving Show
+-- newtype Nat = N Int deriving Show
+
+data Nat = Zero | Succ Nat deriving Show
+
+nat2int :: Nat -> Int
+nat2int Zero     = 0
+nat2int (Succ n) = 1 + nat2int n
+
+int2nat :: Int -> Nat
+int2nat 0 = Zero
+int2nat n = Succ (int2nat (n-1))
+
+-- add :: Nat -> Nat -> Nat
+-- add m n = int2nat $ nat2int m + nat2int n
+
+add :: Nat -> Nat -> Nat
+add Zero     n = n
+add (Succ m) n = Succ (add m n)
+
+data List a = Nill | Cons a (List a) deriving Show
+
+len :: List a -> Int
+len Nill        = 0
+len (Cons _ xs) = 1 + len xs
+
+data Tree a = Leaf a | Node (Tree a) a (Tree a) deriving Show
+
+t :: Tree Int
+t = Node (Node (Leaf 1) 3 (Leaf 4)) 5
+         (Node (Leaf 6) 7 (Leaf 9))
+
+-- occers :: Eq a => a -> Tree a -> Bool
+-- occers x (Leaf y)     = x == y
+-- occers x (Node l y r) = x == y || occers x l || occers x r
+
+flattern :: Tree a -> [a]
+flattern (Leaf x)     = [x] 
+flattern (Node l x r) = flattern l ++ [x] ++ flattern r
+
+occers :: Ord a => a -> Tree a -> Bool
+occers x (Leaf y)                 = x == y
+occers x (Node l y r) | x == y    = True
+                      | x < y     = occers x l
+                      | otherwise = occers x r
