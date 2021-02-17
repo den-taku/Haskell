@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 548339ddb49a72ad223040e7b5092555c5ca32d47602d76aa0c9a42d5bb534fa
+-- hash: 0737f5b21288c91e4582769d4940ad77dc56ee4584a09abe3762ebdb1b979f15
 
 name:           typeAndTypeClass
 version:        0.1.0.0
@@ -30,6 +30,7 @@ library
       Class
       Comp
       Lib
+      Practice
       Tautology
   other-modules:
       Paths_typeAndTypeClass

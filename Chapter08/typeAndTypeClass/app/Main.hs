@@ -4,6 +4,9 @@ import Lib
 import Class
 import Tautology
 import Comp
+import Practice
 
 main :: IO ()
-main = Comp.someFunc
+main = do
+    Practice.someFunc
+    print $ isTrut p5
