@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: fca97e71c1bbcb545e76093444c251128c914c65f9f52d5e46d7ebde9df4039d
+-- hash: 548339ddb49a72ad223040e7b5092555c5ca32d47602d76aa0c9a42d5bb534fa
 
 name:           typeAndTypeClass
 version:        0.1.0.0
@@ -28,6 +28,7 @@ source-repository head
 library
   exposed-modules:
       Class
+      Comp
       Lib
       Tautology
   other-modules:

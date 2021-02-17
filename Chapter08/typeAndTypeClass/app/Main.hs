@@ -3,6 +3,7 @@ module Main where
 import Lib
 import Class
 import Tautology
+import Comp
 
 main :: IO ()
-main = Tautology.someFunc
+main = Comp.someFunc
