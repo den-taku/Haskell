@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 8c7bc32206032be41e2948a65d079aff1ff2ba3ef9168349ecdd99e1fa45f0c0
+-- hash: acabf218c5a994f495a67582fb7f0a1f74b845f019cd5662930714d337fa380f
 
 name:           typeAndTypeClass
 version:        0.1.0.0
@@ -27,6 +27,7 @@ source-repository head
 
 library
   exposed-modules:
+      Class
       Lib
   other-modules:
       Paths_typeAndTypeClass

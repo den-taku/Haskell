@@ -18,6 +18,7 @@ someFunc = do
     print $ occers 3 t
     print $ occers 4567 t
     print $ flattern t
+    print $ int2nat $ nat2int $ int2nat $ nat2int $ Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Zero))))))))))))))
 
 -- type String = [Char]
 
