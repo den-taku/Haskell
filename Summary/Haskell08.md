@@ -31,3 +31,10 @@
         (==), (/=) :: a -> a -> Bool
         x /= y = not $ x == y
      ```
+ - `instance`でそれぞれの型に実装
+   - ```haskell
+     instance Eq Bool where
+        False == False = True
+        True  == True  = True
+        _     == _     = False
+     ```
