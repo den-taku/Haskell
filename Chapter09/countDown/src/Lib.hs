@@ -13,6 +13,9 @@ someFunc = do
     print $ perms [1, 2, 3]
     print $ choices [1, 2, 3]
     print $ solution (App Mul (App Add (Val 1) (Val 50)) (App Sub (Val 25) (Val 10))) [1, 3, 7, 10, 25, 50] 765
+    print $ split [1,2,3,4]
+    -- print $ solutions [1, 3, 7, 10, 25, 50] 765
+    -- print $ solutions [1, 3, 7, 10, 25, 50] 831
 
 data Op = Add | Sub | Mul | Div
 
@@ -71,3 +74,25 @@ choices = concat . map perms . subs
 
 solution :: Expr -> [Int] -> Int -> Bool
 solution e ns n = elem (values e) (choices ns) && eval e == [n]
+
+split :: [a] -> [([a], [a])]
+split []     = []
+split [_]    = []
+split (x:xs) = ([x], xs) : [(x:ls,rs) | (ls, rs) <- split xs]
+
+exprs :: [Int] -> [Expr]
+exprs []  = []
+exprs [n] = [Val n]
+exprs ns  = [e | (ls,rs) <- split ns,
+                 l       <- exprs ls,
+                 r       <- exprs rs,
+                 e       <- combine l r]
+
+combine :: Expr -> Expr -> [Expr]
+combine l r = [App o l r | o <- ops]
+
+ops :: [Op]
+ops = [Add,Sub,Mul,Div]
+
+solutions :: [Int] -> Int -> [Expr]
+solutions ns n = [e | ns' <- choices ns, e <- exprs ns', eval e == [n]]
