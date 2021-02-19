@@ -17,7 +17,7 @@ someFunc = do
     -- print $ solutions [1, 3, 7, 10, 25, 50] 765
     -- print $ solutions [1, 3, 7, 10, 25, 50] 831
     print $ solutions' [1, 3, 7, 10, 25, 50] 765
-    -- print $ solutions' [1, 3, 7, 10, 25, 50] 831
+    print $ solutions' [1, 3, 7, 10, 25, 50] 831
 
 data Op = Add | Sub | Mul | Div
 
@@ -112,5 +112,5 @@ results ns  = [res | (ls,rs) <- split ns,
 combine' :: Result -> Result -> [Result]
 combine' (l,x) (r,y) = [(App o l r, apply o x y) | o <- ops, valid o x y] 
 
-solution' :: [Int] -> Int -> [Expr]
-solution' ns n = [e | ns' <- choices ns, (e,m) <- results ns', m == n]
+solutions' :: [Int] -> Int -> [Expr]
+solutions' ns n = [e | ns' <- choices ns, (e,m) <- results ns', m == n]
