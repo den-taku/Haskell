@@ -27,11 +27,18 @@ instance Show Op where
     show Mul = "*"
     show Div = "/"
 
+-- valid :: Op -> Int -> Int -> Bool
+-- valid Add _ _ = True
+-- valid Sub x y = x > y
+-- valid Mul _ _ = True
+-- valid Div x y = x `mod` y == 0
+
 valid :: Op -> Int -> Int -> Bool
-valid Add _ _ = True
+valid Add x y = x <= y
 valid Sub x y = x > y
-valid Mul _ _ = True
+valid Mul x y = x /= 1 && y /= 1 && x <= y
 valid Div x y = x `mod` y == 0
+
 
 apply :: Op -> Int -> Int -> Int
 apply Add x y = x + y
