@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 906541e0a3ad52d6b251883131202ccdc992a797ad175fc53e3fc83f9ff4e46f
+-- hash: e2dafd5d370c0c000d6af3650b387791912dfd28dfaa1bdbbca0fad550e800b1
 
 name:           interactiveProgram
 version:        0.1.0.0
@@ -27,6 +27,7 @@ source-repository head
 
 library
   exposed-modules:
+      Hangman
       Lib
   other-modules:
       Paths_interactiveProgram

@@ -1,6 +1,7 @@
 module Main where
 
 import Lib
+import Hangman
 
 main :: IO ()
-main = someFunc
+main = Hangman.someFunc
