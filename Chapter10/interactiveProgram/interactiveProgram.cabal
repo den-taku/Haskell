@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 21b448ce758b08ff367f251ae14a76b72ba8c3387e69a69331bfa9921f9b322d
+-- hash: 74d2331b5690a965569a0b0aa2897e1807349bc9df1c693abcc908c0046b242e
 
 name:           interactiveProgram
 version:        0.1.0.0
@@ -41,6 +41,7 @@ library
 executable interactiveProgram-exe
   main-is: Main.hs
   other-modules:
+      Life
       Paths_interactiveProgram
   hs-source-dirs:
       app
