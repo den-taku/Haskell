@@ -5,4 +5,4 @@ import Hangman
 import Nim
 
 main :: IO ()
-main = Nim.someFunc
+main = nim
