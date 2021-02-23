@@ -1,6 +1,9 @@
 module Main where
 
-import Lib
+import Cpu
+import System.IO
 
 main :: IO ()
-main = tictaktoe
+main = do
+    hSetBuffering stdout NoBuffering
+    play empty O

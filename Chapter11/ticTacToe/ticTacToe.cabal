@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: d2d031c6b40e53aa28a3f64a06cd1b369f6b8e2ff0321dc746da61272d4e2892
+-- hash: ef53968019aac7184c77e9b7f5c530fd5f5897a372b0e40c775bbf77456871bc
 
 name:           ticTacToe
 version:        0.1.0.0
@@ -27,6 +27,7 @@ source-repository head
 
 library
   exposed-modules:
+      Cpu
       Lib
   other-modules:
       Paths_ticTacToe

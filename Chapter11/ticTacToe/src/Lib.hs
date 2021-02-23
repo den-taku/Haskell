@@ -1,11 +1,10 @@
 module Lib
-    ( someFunc, tictaktoe
+    ( Grid, Player (..), next, won, full, move, size, turn, wins, empty, cls, goto, putGrid, getNat, prompt
     ) where
 
 
 import Data.Char
 import Data.List
-import System.IO
 
 someFunc :: IO ()
 someFunc = do
