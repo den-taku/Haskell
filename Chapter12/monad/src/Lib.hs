@@ -3,4 +3,10 @@ module Lib
     ) where
 
 someFunc :: IO ()
-someFunc = putStrLn "someFunc"
+someFunc = do
+    putStrLn "someFunc"
+    print $ hoge 8
+
+hoge = fuga 
+
+fuga n = n
