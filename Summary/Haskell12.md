@@ -12,4 +12,5 @@
      fmap id      = id
      fmap (g . h) = fmap g . fmap h
      ```
+   - 同型
    - 関手則を満たす`fmap`は高々一つ
