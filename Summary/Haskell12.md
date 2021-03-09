@@ -31,3 +31,18 @@
        pure :: a -> f a
        (<*>) :: f (a -> b) -> f a -> f b 
    ```
+ - 非決定性プログラミングの枠組みが提供される
+ - Applicativeは逐次と繰り返しを実現する
+   - `sequenceA` : `Applicative f => [f a] -> f [a]` など
+ - **アプリカティブ則**
+   - ```haskell
+     pure id <*> x   = x
+     pure (g x)      = pure g <*> pure x
+     x <*> pure y    = pure (\g -> g y) <*> x
+     x <*> (y <*> z) = (pure (.) <*> x <*> y) <*> z 
+     ```
+ - `fmap`の中置演算子`<$>`
+   - これによりApplicative stileを`g <$> x1 <*> x2 <*> ... <*> xn` のようにかける
+
+
+Applicativeは逐次と繰り返し，Monadは分岐

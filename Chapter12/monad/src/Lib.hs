@@ -20,6 +20,16 @@ someFunc = do
     print $ pure' (+1) <**> Just 1
     print $ pure' (+) <**> Just 1 <**> Just 2
     print $ pure' (+) <**> Nothing <**> Just 2
+    print $ pure (+1) <*> Just 1
+    print $ pure (+) <*> Nothing <*> Just 2
+    print $ pure (+1) <**> [1, 2, 3]
+    print $ pure (*) <*> [1, 2] <*> [3, 4]
+    print $ sequenceA [Just 3, Just 4, Just 5]
+    print $ sequenceA [Just 3, Nothing, Just 4, Just 5]
+    print $ sequenceA [[3, 4], [5, 6], [7, 8], [9]]
+    print $ sequenceA [[3, 4], [5, 6], [7, 8], [], [9]]
+    print $ (\x y z -> x + y * z) <$> Just 4 <*> Just 5 <*> Just 6
+    print $ (+1) <$> [1, 2, 3, 4]
 
 -- inc :: [Int] -> [Int]
 -- inc []     = []
@@ -74,3 +84,29 @@ instance Applicative' Maybe where
     -- <**> :: Maybe (a -> b) -> Maybe a -> Maybe b
     Nothing <**> _ = Nothing
     (Just g) <**> mx = fmap g mx
+
+instance Applicative' [] where
+    pure' x = [x]
+    gs <**> xs = [g x | g <- gs, x <- xs]
+
+prods :: [Int] -> [Int] -> [Int]
+-- prods xs ys = [x*y | x <- xs, y <- ys]
+prods xs ys = pure (*) <*> xs <*> ys
+
+instance Applicative' IO where
+    -- pure' :: a -> IO a
+    pure' = return
+
+    -- (<**>) :: IO (a -> b) -> IO a -> IO b
+    mg <**> mx = do {g <- mg; x <- mx; return (g x)}
+
+getChars :: Int -> IO String
+getChars 0 = return []
+getChars n = pure (:) <*> getChar <*> getChars (n-1)
+    
+sequenceA' :: Applicative f => [f a] -> f [a]
+sequenceA' []     = pure [] 
+sequenceA' (x:xs) = pure (:) <*> x <*> sequenceA' xs
+
+getChars' :: Int -> IO String
+getChars' n = sequenceA (replicate n getChar)
