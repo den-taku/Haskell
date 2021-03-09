@@ -15,6 +15,11 @@ someFunc = do
     print $ inc' (Just 1)
     print $ inc' [1, 2, 3, 4, 5]
     print $ inc (Node (Leaf 1) (Leaf 2))
+    print $ (\x -> x * x) $ 7
+    print (($) (\x -> x * x) 7)
+    print $ pure' (+1) <**> Just 1
+    print $ pure' (+) <**> Just 1 <**> Just 2
+    print $ pure' (+) <**> Nothing <**> Just 2
 
 -- inc :: [Int] -> [Int]
 -- inc []     = []
@@ -57,3 +62,15 @@ instance Functor Tree where
 instance Functor' IO where
     -- fmap' :: (a -> b) -> IO a -> IO b
     fmap' g mx = do {x <- mx; return (g x)}
+
+class Functor f => Applicative' f where
+    pure' :: a -> f a
+    (<**>) :: f (a -> b) -> f a -> f b
+
+instance Applicative' Maybe where
+    -- pure' :: a -> Maybe a
+    pure' = Just
+
+    -- <**> :: Maybe (a -> b) -> Maybe a -> Maybe b
+    Nothing <**> _ = Nothing
+    (Just g) <**> mx = fmap g mx

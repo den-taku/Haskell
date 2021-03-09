@@ -1,6 +1,6 @@
 # 第12章 モナドなど
 
-**関手(functor)**
+**Functor(関手)**
  - 圏論だと圏Cから圏Dへ対応させるやつ(お気持ち理解)
  - ```haskell
     class Functor where
@@ -14,3 +14,20 @@
      ```
    - 同型
    - 関手則を満たす`fmap`は高々一つ
+
+**Applicative(アプリカティブ(関手))**
+ - 複数の引数を取れるようにFunctorを拡張したもの
+ - 次の二つの関数さえあればカリー化して任意の数の引数に対応可能
+   - ```haskell
+     pure :: a -> f a
+     (<*>) :: f (a -> b) -> f a -> f b
+     ```
+ - **アプリカティブスタイル**で使う
+   - ```haskell
+     pure (+) <*> (Just 1) <*> (Just 2)
+     ```
+ - ```haskell
+   class Functor f => Applicative f where
+       pure :: a -> f a
+       (<*>) :: f (a -> b) -> f a -> f b 
+   ```
