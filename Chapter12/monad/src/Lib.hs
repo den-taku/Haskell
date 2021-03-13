@@ -30,6 +30,7 @@ someFunc = do
     print $ sequenceA [[3, 4], [5, 6], [7, 8], [], [9]]
     print $ (\x y z -> x + y * z) <$> Just 4 <*> Just 5 <*> Just 6
     print $ (+1) <$> [1, 2, 3, 4]
+    print $ (<$>) (+1) [1, 2, 3, 4]
 
 -- inc :: [Int] -> [Int]
 -- inc []     = []
