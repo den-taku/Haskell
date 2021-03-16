@@ -57,5 +57,22 @@
       mn >>= \xn ->
         f x1 x2 ... xn
       ```
+    - これは次のようにかける
+    ```haskell
+       do x1 <- m1
+          x2 <- m2
+          .
+          .
+          .
+          xn <- mn
+          f x1 x2 ... xn
+    ```
+ - ```haskell
+   class Applicative m => Monad m where
+     return :: a -> m a
+     (>>=) :: m a -> (a -> m b) -> m b
+
+     return = pure
+   ```
 
 Applicativeは逐次と繰り返し，Monadは分岐
