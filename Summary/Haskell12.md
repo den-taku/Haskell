@@ -33,7 +33,7 @@
    ```
  - 非決定性プログラミングの枠組みが提供される
  - Applicativeは逐次と繰り返しを実現する
-   - `sequenceA` : `Applicative f => [f a] -> f [a]` など
+   - `sequenceA :: Applicative f => [f a] -> f [a]` など
  - **アプリカティブ則**
    - ```haskell
      pure id <*> x   = x
@@ -43,6 +43,19 @@
      ```
  - `fmap`の中置演算子`<$>`
    - これによりApplicative stileを`g <$> x1 <*> x2 <*> ... <*> xn` のようにかける
+ - 「純粋な関数」を「作用をもつ引数」に適用する
 
+**Monad**
+ - `>>=` : **bind演算子**
+    - 「失敗するかもしれない型aの値」を「失敗するかもしれない型a->b」に適用 
+    - ```haskell
+      m1 >>= \x1 ->
+      m2 >>= \x2 ->
+      .
+      .
+      .
+      mn >>= \xn ->
+        f x1 x2 ... xn
+      ```
 
 Applicativeは逐次と繰り返し，Monadは分岐
