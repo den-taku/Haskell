@@ -7,6 +7,8 @@ someFunc = do
     print "Monad"
     print $ eval (Div (Val 1) (Val 0))
     print $ pairs [1, 2] [3, 4]
+    print $ do {x <- return 4; y <- return 6; safediv x y}
+    print $ do {x <- return 4; y <- return 0; safediv x y}
     return ()
 
 data Expr = Val Int | Div Expr Expr
