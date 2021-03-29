@@ -9,6 +9,10 @@ someFunc = do
     print $ pairs [1, 2] [3, 4]
     print $ do {x <- return 4; y <- return 6; safediv x y}
     print $ do {x <- return 4; y <- return 0; safediv x y}
+    print $ tree
+    print $ fst (rlabel tree 0)
+    print $ fst (app (alabel tree) 0)
+    print $ fst (app (mlabel tree) 0)
     return ()
 
 data Expr = Val Int | Div Expr Expr
@@ -90,3 +94,30 @@ instance Applicative ST where
 instance Monad ST where
     -- (>>=) :: ST a -> (a -> ST b) -> ST b
     st >>= f = S (\s -> let (x,s') = app st s in app (f x) s')
+
+data Tree a = Leaf a | Node (Tree a) (Tree a) 
+    deriving Show
+
+tree :: Tree Char
+tree = Node (Node (Leaf 'a') (Leaf 'b')) (Leaf 'c')
+
+rlabel :: Tree a -> Int -> (Tree Int, Int)
+rlabel (Leaf _)   n = (Leaf n, n+1)
+rlabel (Node l r) n = (Node l' r', n'')
+    where
+        (l', n')  = rlabel l n
+        (r', n'') = rlabel r n'
+
+fresh :: ST Int
+fresh = S (\n -> (n, n+1))
+
+alabel :: Tree a -> ST (Tree Int)
+alabel (Leaf _)   = Leaf <$> fresh
+alabel (Node l r) = Node <$> alabel l <*> alabel r
+
+mlabel :: Tree a -> ST (Tree Int)
+mlabel (Leaf _)   = do n <- fresh
+                       return (Leaf n)
+mlabel (Node l r) = do l' <- mlabel l
+                       r' <- mlabel r
+                       return (Node l' r')
