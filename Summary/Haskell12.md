@@ -75,4 +75,7 @@
      return = pure
    ```
 
+  
+`let...in`式もある
+
 Applicativeは逐次と繰り返し，Monadは分岐
