@@ -1,0 +1,62 @@
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.33.0.
+--
+-- see: https://github.com/sol/hpack
+--
+-- hash: 64e16057701b7ea59461f9fedd3c499e7643656d04780173386ce160f4cd0c26
+
+name:           monadParser
+version:        0.1.0.0
+description:    Please see the README on GitHub at <https://github.com/githubuser/monadParser#readme>
+homepage:       https://github.com/githubuser/monadParser#readme
+bug-reports:    https://github.com/githubuser/monadParser/issues
+author:         Author name here
+maintainer:     example@example.com
+copyright:      2021 Author name here
+license:        BSD3
+license-file:   LICENSE
+build-type:     Simple
+extra-source-files:
+    README.md
+    ChangeLog.md
+
+source-repository head
+  type: git
+  location: https://github.com/githubuser/monadParser
+
+library
+  exposed-modules:
+      Lib
+  other-modules:
+      Paths_monadParser
+  hs-source-dirs:
+      src
+  build-depends:
+      base >=4.7 && <5
+  default-language: Haskell2010
+
+executable monadParser-exe
+  main-is: Main.hs
+  other-modules:
+      Paths_monadParser
+  hs-source-dirs:
+      app
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      base >=4.7 && <5
+    , monadParser
+  default-language: Haskell2010
+
+test-suite monadParser-test
+  type: exitcode-stdio-1.0
+  main-is: Spec.hs
+  other-modules:
+      Paths_monadParser
+  hs-source-dirs:
+      test
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      base >=4.7 && <5
+    , monadParser
+  default-language: Haskell2010
