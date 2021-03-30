@@ -74,6 +74,12 @@
 
      return = pure
    ```
+ - **Monad則**
+    - ```haskell
+      return x >>= f   = f x
+      mx >>= return    = mx
+      (mx >>= f) >>= g = mx >>= (\x -> (f x >>= g))
+      ```
 
   
 `let...in`式もある
