@@ -1,3 +1,5 @@
+{-# LANGUAGE AllowAmbiguousTypes #-}
+
 module Monad
     (someFunc
     ) where
@@ -18,6 +20,10 @@ someFunc = do
     print $ Monad.mapM conv "1234"
     print $ Monad.mapM conv "123a"
     print $ Monad.filterM (\x -> [True, False]) [1, 2, 3]
+    print $ Monad.join [[1, 2], [3, 4], [5, 6]]
+    print $ Monad.join (Just (Just 1))
+    print $ Monad.join $ (Just Nothing :: Maybe (Maybe Int))
+    print $ Monad.join (Nothing :: Maybe (Maybe Int))
     return ()
 
 data Expr = Val Int | Div Expr Expr
@@ -143,3 +149,9 @@ filterM p (x:xs) = do
     b <- p x
     ys <- Monad.filterM p xs
     return (if b then x:ys else ys)
+
+join :: Monad m => m (m a) -> m a
+join mmx = do 
+    mx <- mmx
+    x  <- mx
+    return x
