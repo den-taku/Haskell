@@ -2,6 +2,8 @@ module Monad
     (someFunc
     ) where
 
+import Data.Char
+
 someFunc :: IO () 
 someFunc = do
     print "Monad"
@@ -13,6 +15,9 @@ someFunc = do
     print $ fst (rlabel tree 0)
     print $ fst (app (alabel tree) 0)
     print $ fst (app (mlabel tree) 0)
+    print $ Monad.mapM conv "1234"
+    print $ Monad.mapM conv "123a"
+    print $ Monad.filterM (\x -> [True, False]) [1, 2, 3]
     return ()
 
 data Expr = Val Int | Div Expr Expr
@@ -121,3 +126,20 @@ mlabel (Leaf _)   = do n <- fresh
 mlabel (Node l r) = do l' <- mlabel l
                        r' <- mlabel r
                        return (Node l' r')
+                    
+mapM :: Monad m => (a -> m b) -> [a] -> m [b]
+mapM f []     = return []
+mapM f (x:xs) = do y <- f x
+                   ys <- Monad.mapM f xs
+                   return (y:ys)
+
+conv :: Char -> Maybe Int
+conv c | isDigit c = Just (digitToInt c)
+       | otherwise = Nothing
+    
+filterM :: Monad m => (a -> m Bool) -> [a] -> m [a]
+filterM p []     = return []
+filterM p (x:xs) = do
+    b <- p x
+    ys <- Monad.filterM p xs
+    return (if b then x:ys else ys)
