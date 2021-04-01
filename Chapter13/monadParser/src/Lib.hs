@@ -11,6 +11,9 @@ someFunc = do
     print $ parse item "abc"
     print $ parse (fmap toUpper item) "abc"
     print $ parse (fmap toUpper item) ""
+    print $ parse (pure 1) "abc"
+    print $ parse three "abcdef"
+    print $ parse three "ab"
     return ()
 
 newtype Parser a = P (String -> [(a,String)])
@@ -29,3 +32,16 @@ item :: Parser Char
 item = P (\inp -> case inp of
     []     -> []
     (x:xs) -> [(x,xs)])
+
+instance Applicative Parser where
+    -- pure :: a -> Parser a
+    pure v = P (\inp -> [(v, inp)])
+
+    -- <*> :: Parser (a -> b) -> Parser a -> Parser b
+    pg <*> px = P (\inp -> case parse pg inp of
+        []        -> []
+        [(g,out)] -> parse (fmap g px) out)
+
+three :: Parser (Char, Char)
+three = pure g <*> item <*> item <*> item
+    where g x y z = (x,z)
