@@ -1,6 +1,12 @@
 module Main where
 
-import Lib
+import Cal
+import System.IO
 
 main :: IO ()
-main = someFunc
+main = do
+    hSetBuffering stdout NoBuffering
+    run
+
+-- main :: IO ()
+-- main = someFunc
