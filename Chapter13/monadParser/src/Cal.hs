@@ -2,7 +2,7 @@ module Cal
     ( run, someFunc
     ) where
 
-import Lib
+import Parser
 import System.IO
 
 -- someFunc :: IO ()

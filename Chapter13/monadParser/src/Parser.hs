@@ -1,4 +1,4 @@
-module Lib
+module Parser
     ( parse, expr, someFunc
     ) where
 

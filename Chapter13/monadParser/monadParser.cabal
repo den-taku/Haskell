@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 402d33f7973adec918e561b749fa22a3f73ff75ae520c93bb4f5dd5a786633e1
+-- hash: 68aacdd22481497836b3bad78d89ef0f101008ee79bcd6ee835f258ec37cd8a3
 
 name:           monadParser
 version:        0.1.0.0
@@ -28,7 +28,7 @@ source-repository head
 library
   exposed-modules:
       Cal
-      Lib
+      Parser
   other-modules:
       Paths_monadParser
   hs-source-dirs:
