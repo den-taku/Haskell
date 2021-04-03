@@ -16,3 +16,4 @@
       x `mappend` mempty          = x
       x `mappend` (y `mappend` z) = (x `mappend` y) `mappend` z
       ```
+ - `Semigroup` (半群)などの型クラスもある
