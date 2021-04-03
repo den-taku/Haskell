@@ -18,3 +18,4 @@ someFunc = do
     print $ mconcat [Any False, Any False, Any False]
     print $ getAny $ mconcat [Any False, Any False, Any False]
     print $ getAll $ All True <> All True <> All True
+    print $ [1, 2, 3] `mappend` [3, 4] `mappend` mempty `mappend` []
