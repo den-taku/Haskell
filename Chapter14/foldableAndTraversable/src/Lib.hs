@@ -2,5 +2,9 @@ module Lib
     ( someFunc
     ) where
 
+import Data.Typeable
+
 someFunc :: IO ()
-someFunc = putStrLn "someFunc"
+someFunc = do
+    let unit = print "Lib!"
+    print $ typeOf unit
