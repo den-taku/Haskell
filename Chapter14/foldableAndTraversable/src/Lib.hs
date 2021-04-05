@@ -24,13 +24,15 @@ someFunc = do
     print $ Lib.foldMap' id [All True, All True, All True, All False]
     print $ getSum (foldMap Sum [1..10])
     print $ getProduct (foldMap Product [1..10])
+    print $ foldr (+) 1 tree - 1
+    print $ foldl (+) 1 tree - 1
 
 
 -- fold :: Monoid a => [a] -> a
 -- fold []     = mempty
 -- fold (x:xs) = x `mappend` fold xs
 
--- data Tree a = Leaf a | Node (Tree a) (Tree a) deriving Show
+data Tree a = Leaf a | Node (Tree a) (Tree a) deriving Show
 
 -- foldt :: Monoid a => Tree a -> a
 -- foldt (Leaf x)   = x
@@ -59,3 +61,22 @@ instance Foldable' [] where
     foldl' _ v []     = v
     foldl' f v (x:xs) = Lib.foldl' f (f v x) xs
 
+instance Foldable Tree where
+    -- fold :: Monoid a => Tree a -> a
+    fold (Leaf x)   = x
+    fold (Node l r) = fold l `mappend` fold r 
+
+    -- foldMap :: Monoid b => (a -> b) -> Tree a -> b
+    foldMap f (Leaf x)   = f x
+    foldMap f (Node l r) = foldMap f l `mappend` foldMap f r
+
+    -- foldr :: (a -> b -> b) -> b -> Tree a -> b
+    foldr f v (Leaf x)   = f x v
+    foldr f v (Node l r) = foldr f (foldr f v r) l
+
+    -- foldl :: (a -> b -> b) -> a -> Tree b -> a
+    foldl f v (Leaf x)   = f v x
+    foldl f v (Node l r) = foldl f (foldl f v l) r
+
+tree :: Tree Int
+tree = Node (Node (Leaf 1) (Leaf 2)) (Leaf 3)
