@@ -17,3 +17,14 @@
       x `mappend` (y `mappend` z) = (x `mappend` y) `mappend` z
       ```
  - `Semigroup` (半群)などの型クラスもある
+
+**Foldable**
+ - データ構造の中の値をモノイドを使って畳み込む操作
+ - ```haskell
+   class Foldable t where
+       fold    :: Monoid a => t a -> a
+       foldMap :: Monoid b => (a -> b) -> t a -> b
+       foldr   :: (a -> b -> b) -> b -> t a -> b
+       foldl   :: (a -> b -> a) -> a -> t b -> a
+   ```
+    - 完全な定義には他にも有益なメソッドとデフォルト実装が提供されている
