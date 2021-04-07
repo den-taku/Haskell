@@ -35,6 +35,11 @@ someFunc = do
     print $ foldl1 (+) (Node (Leaf 1) (Leaf 2))
     print $ sum (Node (Leaf 1) (Leaf 3))
     print $ toList tree
+    print $ average [1..10]
+    print $ average (Node (Leaf 1) (Leaf 3))
+    print $ and (Node (Leaf True) (Leaf True))
+    print $ or (Node (Node (Leaf False) (Leaf False)) (Node (Node (Leaf True) (Leaf False)) (Leaf False)))
+    print $ any even tree
 
 
 -- fold :: Monoid a => [a] -> a
@@ -89,3 +94,6 @@ instance Foldable Tree where
 
 tree :: Tree Int
 tree = Node (Node (Leaf 1) (Leaf 2)) (Leaf 3)
+
+average :: Foldable t => t Int -> Int
+average ns = sum ns `div` length ns
