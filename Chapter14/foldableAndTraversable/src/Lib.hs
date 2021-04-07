@@ -26,6 +26,15 @@ someFunc = do
     print $ getProduct (foldMap Product [1..10])
     print $ foldr (+) 1 tree - 1
     print $ foldl (+) 1 tree - 1
+    print $ null []
+    print $ null (Leaf 1)
+    print $ length [1..10]
+    print $ length (Node (Leaf 'a') (Leaf 'b'))
+    print $ length (Leaf 1)
+    print $ foldr1 (+) [1..10]
+    print $ foldl1 (+) (Node (Leaf 1) (Leaf 2))
+    print $ sum (Node (Leaf 1) (Leaf 3))
+    print $ toList tree
 
 
 -- fold :: Monoid a => [a] -> a
@@ -63,20 +72,20 @@ instance Foldable' [] where
 
 instance Foldable Tree where
     -- fold :: Monoid a => Tree a -> a
-    fold (Leaf x)   = x
-    fold (Node l r) = fold l `mappend` fold r 
+    -- fold (Leaf x)   = x
+    -- fold (Node l r) = fold l `mappend` fold r 
 
     -- foldMap :: Monoid b => (a -> b) -> Tree a -> b
     foldMap f (Leaf x)   = f x
     foldMap f (Node l r) = foldMap f l `mappend` foldMap f r
 
     -- foldr :: (a -> b -> b) -> b -> Tree a -> b
-    foldr f v (Leaf x)   = f x v
-    foldr f v (Node l r) = foldr f (foldr f v r) l
+    -- foldr f v (Leaf x)   = f x v
+    -- foldr f v (Node l r) = foldr f (foldr f v r) l
 
     -- foldl :: (a -> b -> b) -> a -> Tree b -> a
-    foldl f v (Leaf x)   = f v x
-    foldl f v (Node l r) = foldl f (foldl f v l) r
+    -- foldl f v (Leaf x)   = f v x
+    -- foldl f v (Node l r) = foldl f (foldl f v l) r
 
 tree :: Tree Int
 tree = Node (Node (Leaf 1) (Leaf 2)) (Leaf 3)
