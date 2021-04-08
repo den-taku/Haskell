@@ -40,6 +40,12 @@ someFunc = do
     print $ and (Node (Leaf True) (Leaf True))
     print $ or (Node (Node (Leaf False) (Leaf False)) (Node (Node (Leaf True) (Leaf False)) (Leaf False)))
     print $ any even tree
+    print $ traverse dec [1,2,3]
+    print $ traverse dec [2,1,0]
+    print $ traverse' dec [1,2,3]
+    print $ traverse dec [2,1,0]
+    print $ traverse dec (Node (Leaf 1) (Leaf 2))
+    print $ traverse dec (Node (Leaf 0) (Leaf 1))
 
 
 -- fold :: Monoid a => [a] -> a
@@ -97,3 +103,28 @@ tree = Node (Node (Leaf 1) (Leaf 2)) (Leaf 3)
 
 average :: Foldable t => t Int -> Int
 average ns = sum ns `div` length ns
+
+-- traverse :: (a -> Maybe b) -> [a] -> Maybe [b]
+-- traverse g []     = pure []
+-- traverse g (x:xs) = pure (:) <*> g x <*> Lib.traverse g xs
+
+dec :: Int -> Maybe Int
+dec n = if n > 0 then Just (n-1) else Nothing
+
+class (Functor t, Foldable t) => Traversable' t where
+    traverse' :: Applicative f => (a -> f b) -> t a -> f (t b)
+
+instance Traversable' [] where
+    -- traverse' :: Applicative f => (a -> f b) -> [a] -> f [b]
+    traverse' g []     = pure []
+    traverse' g (x:xs) = pure (:) <*> g x <*> traverse' g xs
+
+instance Functor Tree where
+    -- fmap :: (a -> b) -> Tree a -> Tree b
+    fmap g (Leaf x)   = Leaf (g x)
+    fmap g (Node l r) = Node (fmap g l) (fmap g r)
+
+instance Traversable Tree where
+    -- traverse :: Applicative f => (a -> f b) -> Tree a -> f (Tree b)
+    traverse g (Leaf x)   = pure Leaf <*> g x
+    traverse g (Node l r) = pure Node <*> traverse g l <*> traverse g r

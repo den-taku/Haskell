@@ -31,3 +31,11 @@
        - クラスのメソッドになっているのは実装の書き換えを可能にするため
     - 性能を向上させたかったらデフォルト実装を書き換えればよい
  - `foldMap`か`foldr`のどちらかを定義すれば汎用的な関数が適用できるようになる
+
+**Traversable**
+ - データ構造を走査する操作
+ - ```haskell
+   class (Functor t, Foldable t) => Traversable t where
+     traverse :: Applicative f => (a -> f b) -> t a -> f (t b)
+   ```
+    - FunctorでありFoldableであることが求められる
