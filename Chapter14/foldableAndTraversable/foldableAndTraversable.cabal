@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 653a8813bf173a7a0463336087bbc0ecd5c2c12c883ea699ee29951f90528eb1
+-- hash: 75fda93791c85621be9605ac748ffaa19bec15aa3bf343458c58f39f1a5e8a5e
 
 name:           foldableAndTraversable
 version:        0.1.0.0
@@ -28,6 +28,7 @@ source-repository head
 library
   exposed-modules:
       Lib
+      Tree
   other-modules:
       Paths_foldableAndTraversable
   hs-source-dirs:
