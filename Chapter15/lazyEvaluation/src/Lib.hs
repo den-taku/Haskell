@@ -3,4 +3,9 @@ module Lib
     ) where
 
 someFunc :: IO ()
-someFunc = putStrLn "someFunc"
+someFunc = do
+    print "someFunc"
+    print $ inc (2*3)
+
+inc :: Int -> Int
+inc = (+) 1
