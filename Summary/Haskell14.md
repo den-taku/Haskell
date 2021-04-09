@@ -39,3 +39,5 @@
      traverse :: Applicative f => (a -> f b) -> t a -> f (t b)
    ```
     - FunctorでありFoldableであることが求められる
+ - `traverse`か`sequenceA`のどちらかを定義すれば良い
+    - `traverse`のデフォルト実装は効率が悪いのでこちらを書き換えると良い
