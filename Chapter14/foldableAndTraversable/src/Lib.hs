@@ -46,6 +46,10 @@ someFunc = do
     print $ traverse dec [2,1,0]
     print $ traverse dec (Node (Leaf 1) (Leaf 2))
     print $ traverse dec (Node (Leaf 0) (Leaf 1))
+    print $ sequenceA [Just 1, Just 2, Just 3]
+    print $ sequenceA [Just 1, Nothing, Just 3]
+    print $ sequenceA (Node (Leaf (Just 1)) (Leaf (Just 2)))
+    print $ sequenceA (Node (Leaf (Just 1)) (Leaf Nothing))
 
 
 -- fold :: Monoid a => [a] -> a
