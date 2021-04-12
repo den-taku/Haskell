@@ -9,6 +9,8 @@ someFunc = do
     print $ split [1,2,3,4]
     print $ split [1,2,3,4,5]
     print $ split [3]
+    print $ mult (1+2) (2+3)
+    print $ (\_ -> 1 + 2) 0
 
 inc :: Int -> Int
 inc = (+) 1
@@ -18,5 +20,8 @@ split [] = ([],[])
 split [x] = ([x], [])
 split (x:y:zs) = (x:xs,y:ys) where (xs,ys) = split zs
 
-mult :: (Int,Int) -> Int
-mult (x,y) = x*y
+-- mult :: (Int,Int) -> Int
+-- mult (x,y) = x*y
+
+mult :: Int -> Int -> Int
+mult x = \y -> x * y
