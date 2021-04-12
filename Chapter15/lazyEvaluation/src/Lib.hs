@@ -17,3 +17,6 @@ split :: [a] -> ([a], [a])
 split [] = ([],[])
 split [x] = ([x], [])
 split (x:y:zs) = (x:xs,y:ys) where (xs,ys) = split zs
+
+mult :: (Int,Int) -> Int
+mult (x,y) = x*y
