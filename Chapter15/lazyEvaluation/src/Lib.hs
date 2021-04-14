@@ -12,6 +12,10 @@ someFunc = do
     print $ mult (1+2) (2+3)
     print $ (\_ -> 1 + 2) 0
     print $ fst (0,inf)
+    print $ head ones
+    print $ take 3 ones
+    print $ take 7 primes
+    print $ last $ takeWhile (<100000) primes
 
 inc :: Int -> Int
 inc = (+) 1
@@ -32,3 +36,12 @@ inf = 1 + inf
 
 square :: Int -> Int
 square n = n * n
+
+ones :: [Int]
+ones = 1 : ones
+
+primes :: [Int]
+primes = sieve [2..]
+
+sieve :: [Int] -> [Int]
+sieve (p:xs) = p : sieve [x | x <- xs, x `mod` p /= 0]
