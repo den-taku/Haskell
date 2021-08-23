@@ -4,3 +4,4 @@ import Monad
 
 main :: IO ()
 main = someFunc
+

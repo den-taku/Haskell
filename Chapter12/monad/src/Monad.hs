@@ -6,7 +6,8 @@ module Monad
 
 import Data.Char
 
-someFunc :: IO () 
+someFunc :: IO ()
+
 someFunc = do
     print "Monad"
     print $ eval (Div (Val 1) (Val 0))
@@ -29,7 +30,8 @@ someFunc = do
 data Expr = Val Int | Div Expr Expr
 
 -- eval :: Expr -> Int
--- eval (Val n)   = n 
+-- eval (Val n)   = n
+
 -- eval (Div x y) = eval x `div` eval y
 
 safediv :: Int -> Int -> Maybe Int
@@ -38,7 +40,8 @@ safediv n m = Just (n `div` m)
 
 -- eval :: Expr -> Maybe Int
 -- eval (Val n)   = Just n
--- eval (Div x y) = case eval x of 
+-- eval (Div x y) = case eval x of
+
 --     Nothing -> Nothing
 --     Just n -> case eval y of
 --         Nothing -> Nothing
@@ -61,7 +64,8 @@ eval :: Expr -> Maybe Int
 eval (Val n)   = Just n
 eval (Div x y) = do n <- eval x
                     m <- eval y
-                    safediv n m 
+                    safediv n m
+
 
 class Applicative m => Monad' m where
     return' :: a -> m a
