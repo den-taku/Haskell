@@ -71,7 +71,8 @@ class Applicative m => Monad' m where
     return' :: a -> m a
     (>>==) :: m a -> (a -> m b) -> m b
 
-    return' = pure 
+    return' = pure
+
 
 instance Monad' Maybe where
     -- (>>==) :: Maybe a -> (a -> Maybe b) -> Maybe b
@@ -136,7 +137,7 @@ mlabel (Leaf _)   = do n <- fresh
 mlabel (Node l r) = do l' <- mlabel l
                        r' <- mlabel r
                        return (Node l' r')
-                    
+
 mapM :: Monad m => (a -> m b) -> [a] -> m [b]
 mapM f []     = return []
 mapM f (x:xs) = do y <- f x
@@ -146,7 +147,7 @@ mapM f (x:xs) = do y <- f x
 conv :: Char -> Maybe Int
 conv c | isDigit c = Just (digitToInt c)
        | otherwise = Nothing
-    
+
 filterM :: Monad m => (a -> m Bool) -> [a] -> m [a]
 filterM p []     = return []
 filterM p (x:xs) = do
@@ -155,7 +156,10 @@ filterM p (x:xs) = do
     return (if b then x:ys else ys)
 
 join :: Monad m => m (m a) -> m a
-join mmx = do 
+join mmx = do
+
+
+
     mx <- mmx
     x  <- mx
     return x
