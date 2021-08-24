@@ -12,5 +12,5 @@ type IO a = World -> (a,World)
    - `getChar :: IO Char`
  - `putChar`
    - `putChar :: Char -> IO ()`
- - return`
+ - `return`
    - `return :: Monad m => a -> m a`
