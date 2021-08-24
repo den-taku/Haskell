@@ -13,10 +13,10 @@
        many x = some x <|> pure []
        some x = pure (:) <*> x <*> many x
    ```
- - **選択肢(alternative)**という概念の抽象化
+ - **選択肢(alternative)** という概念の抽象化
  - 以下の則を満たす必要がある
     - ```haskell
       empty <|> x     = x
       x <|> empty     = x
-      x <|> (y <|> z) = (x <|> y) <|> z 
+      x <|> (y <|> z) = (x <|> y) <|> z
       ```
